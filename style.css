@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #eaf5ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.game {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    padding: 30px;
+}
+#question{
+    opacity: 0;
+    transform: translateX(50px);
+    pointer-events: none;
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease; 
+}
+#question.show {
+    opacity: 1;
+    transform: translateX(0);
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+}
+#question.delete {
+    display: none;
+}
+.answers {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.answer {
+    width: 200px;
+    padding: 18px;
+    border: none;
+    border-radius: 15px;
+    background: #d8edff;
+    font-size: 18px;
+    pointer-events: none;
+    transition:
+        transform 0.5s ease,
+        background 0.5s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+.answer.show {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+    cursor: pointer;
+}
+.answer.delete {
+    display: none;
+}
+.answer:hover {
+    transform: translateY(-3px);
+    background: #c2e4ff;
+}
+.error-message {
+    margin-top: 20px;
+    padding: 25px;
+    background: #fff;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    transform: translateX(30px);
+    pointer-events: none;
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+.error-message.show {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+.error-message h2 {
+    margin-top: 0;
+}
+.error-message.delete {
+    display: none;
+}
+
+
+#tryAgain {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 12px;
+    background: #d8edff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#finalRound {
+    opacity: 0;
+    transform: translateX(50px);
+    /* pointer-events: none; */
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease; 
+}
+
+#finalRound.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+#finalRound.delete {
+    display: none;
+}
+
+/* Рулетка */
+
+/* .roulette-card {
+    background: white;
+    padding: 50px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+.roulette-placeholder {
+    margin: 40px auto;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: #d8edff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+} */

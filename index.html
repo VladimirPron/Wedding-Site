@@ -1,0 +1,74 @@
+<!-- <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Розыгрыш подарка</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="game">
+        <h1>Что же вы выиграли?</h1>
+        <div class="slot-window">
+            <div class="pointer"></div>
+            <div class="track" id="track">
+            </div>
+        </div>
+        <button id="startButton">
+            Старт
+        </button>
+        <audio id="music" loop>
+            <source src="sounds/1.mp3" type="audio/mpeg">
+        </audio>
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наш лабиринт</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="game">
+        <h1 id="question"></h1>
+        <button class="answer"></button>
+        <button class="answer"></button>
+        <div id="errorMessage" class="error-message">
+            <h2>Не совсем! 😏</h2>
+            <p>Давай попробуем ещё раз.</p>
+            <button id="tryAgain">
+                Попробовать ещё раз
+            </button>
+        </div>
+        <div id="finalRound">
+            <p id="finalQuestion"></p>
+            <input type="text" id="finalQuestionAnswer" placeholder="Введите ответ">
+            <button id="finalQuestionAnswerSubmit">Ответить</button>
+            <p class="error-message">Неправильный ответ</p>
+        </div>
+
+        <!-- РУЛЕТКА -->
+        <!-- <section id="rouletteScreen" class="screen">
+            <div class="roulette-card">
+                <h1>Ты прошёл первый этап! 🎉</h1>
+                <p>А теперь самое интересное...</p>
+                <div class="roulette-placeholder">
+                    🎰
+                </div>
+            </div>
+        </section> -->
+
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
