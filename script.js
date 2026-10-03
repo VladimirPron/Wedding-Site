@@ -16,30 +16,6 @@ const mainVictorinaQuestions = [
         ],
         correct: 0
     },
-    {
-        question: "For him: Нажми справа",
-        answers: [
-            "Право",
-            "Лево",
-        ],
-        correct: 0
-    },
-    {
-        question: "For her: Нажми справа",
-        answers: [
-            "Лево",
-            "Право",
-        ],
-        correct: 1
-    },
-    {
-        question: "For him: Нажми слева",
-        answers: [
-            "Лево",
-            "Право",
-        ],
-        correct: 0
-    },
 ]
 
 let count = 0; //Счетчик для прохода по вопросам
