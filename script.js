@@ -1,67 +1,5 @@
-/*
-    Скрипт для рулетки
-*/
-// const r_gifts = [
-//     "Ужин на двоих",
-//     "Бутылка вина",
-//     "Билеты в кино",
-//     "Билеты на концерт",
-//     "Поход в СПА",
-//     "Путешествие на двоих",
-//     "Фотосессия",
-//     "Секретный приз",
-//     "Пляжный мяч",
-//     "Компьютер"
-// ];
-// const r_track = document.getElementById("track");
-// const r_button = document.getElementById("startButton");
-// const r_result = document.getElementById("result");
-// const r_itemWidth = 200;
-// const r_repetitions = 8;
-// for (let r = 0; r < r_repetitions; r++) {
-//     r_gifts.forEach(r_gift => {
-//         const r_item = document.createElement("div");
-//         r_item.className = "item";
-//         r_item.textContent = r_gift;
-//         r_track.appendChild(r_item);
-//     });
-// }
-// r_button.addEventListener("click", () => {
-//     r_button.disabled = true;
-//     r_result.textContent = "";
-//     const r_targetRepetition = 5;
-//     const r_targetIndex =
-//         r_targetRepetition * r_gifts.length + 9;
-
-//     const r_windowWidth =
-//         document.querySelector(".slot-window").offsetWidth;
-//     const r_centerOffset =
-//         (r_windowWidth / 2) - (r_itemWidth / 2);
-
-//     const finalPosition =
-//         -(r_targetIndex * r_itemWidth) + r_centerOffset;
-
-//     r_track.style.transition =
-//         "transform 5s cubic-bezier(0.12, 0.65, 0.18, 1)";
-//     r_track.style.transform =
-//         `translateX(${finalPosition}px)`;
-
-//     setTimeout(() => {
-//         r_result.innerHTML =`
-//             🎉 ВЫ ВЫИГРАЛИ ${r_gifts[9]}! 🚐
-//             <br>
-//             <img class="serf" src="images/flags/ru.svg" alt="Сертификат">
-//             `;
-//     }, 5200);
-// });
-
-const music = document.getElementById("music");
-
-// document.getElementById("startButton").addEventListener("click", () => {
-//     music.play();
-// });
-
-const questions = [
+//Список вопросов, которые передаются на страницу
+const mainVictorinaQuestions = [
     {
         question: "Где мы впервые встретились?",
         answers: [
@@ -79,90 +17,70 @@ const questions = [
         correct: 0
     },
 ]
-let count = 0;
-const questionElement = document.getElementById("question");
-const answers = document.querySelectorAll(".answer");
-const errorMessage = document.getElementById("errorMessage");
-const tryAgain = document.getElementById("tryAgain");
-const rouletteScreen = document.getElementById("rouletteScreen")
-const finalRound = document.getElementById("finalRound")
 
+let count = 0; //Счетчик для прохода по вопросам
+
+//Элементы со страницы. По факту число присвоение элементам страницы имен, для работы на этой странице
+//Айди объекта указано в скобках
+const mQuestion = document.getElementById("mQuestion"); //Вопрос один
+const mAnswer = document.querySelectorAll(".mAnswer"); //Список ответов
+const mErrorMessage = document.getElementById("mErrorMessage"); //Весь объект целиком
+
+//Передаем на страницу текст вопроса и текст двух ответов
 function showQuestion() {
-    const question = questions[count];
-    questionElement.textContent = question.question;
-    answers[0].textContent = question.answers[0];
-    answers[1].textContent = question.answers[1];
-    questionElement.classList.add("show");
-    answers.forEach(answer => {
-        answer.classList.add("show");
+    const round = mainVictorinaQuestions[count]; //тут переменной присваивается словарь из списка
+    mQuestion.textContent = round.question;
+    mAnswer[0].textContent = round.answers[0];
+    mAnswer[1].textContent = round.answers[1];
+    //тут мы задали списку вопросов соответсвующие значения
+    mQuestion.classList.add("show"); //отображаем вопрос пользователю
+    mAnswer.forEach(answer => {
+        answer.classList.add("show"); //отображаем каждый ответ пользователю
     });
 }
 
-const finalRQ = {
-    question: "Best Place",
-    answer: "ww"
-}
-const finalQuestion = document.getElementById("finalQuestion")
-const finalQuestionAnswer = document.getElementById("finalQuestionAnswer")
-const finalQuestionAnswerSubmit = document.getElementById("finalQuestionAnswerSubmit");
-
-function finalRound_() {
-    finalQuestion.textContent = finalRQ.question
-    finalRound.classList.add("show")
-    finalQuestionAnswerSubmit.addEventListener("click", () => {
-        const userAnswer = finalQuestionAnswer.value.trim();
-        if (userAnswer.toLowerCase() === finalRQ.answer.toLowerCase()) {
-            finalRound.classList.remove("show");
-            finalRound.classList.add("delete");
-            answerBox.addEventListener("transitionend", (event) => {
-                if (event.propertyName === "transform") {
-                    currentQuestion++;
-                }
-            }, { once: true });
-                } else {
-                    errorMessage.classList.add("show");
-                }
-        }
-    );
-}
-
-showQuestion()
-
-answers.forEach(answer => {
-    answer.addEventListener("click", () => {
-        const selectedAnswer = answer.textContent;
-        const question = questions[count];
-        if (selectedAnswer === question.answers[question.correct]) {
-            count++;
-            questionElement.classList.remove("show");
-            answers.forEach(answer => {
-                answer.classList.remove("show");
-            });
-            errorMessage.classList.remove("show");
-            if (count === questions.length) {
-                questionElement.addEventListener("transitionend", () => {
-                    questionElement.classList.remove("show")
-                    questionElement.classList.add("delete")
-                    errorMessage.classList.remove("show");
-                    errorMessage.classList.add("delete");
-                    answers.forEach(answer => {
-                        answer.classList.add("delete");
-                    });
-                    finalRound_();
-                    }, { once: true }
-                );
-            } else {
-                questionElement.addEventListener("transitionend", () => {
-                        showQuestion();
-                    }, { once: true }
-                );
-            };
-        } else {
-            errorMessage.classList.add("show");
-        }
+function start_() {
+    showQuestion() //Передаем на страницу сайта первый вопрос и 2 ответа
+    mAnswer.forEach(answer => {
+        answer.addEventListener("click", () => { //Ждем клика по любому из ответов
+            const selectedAnswer = answer.textContent; //Создаем новую переменную - это будет вариант, который выбрал пользователь
+            const round = mainVictorinaQuestions[count]; //Создаем переменную в которую передаем текущий словарик раунда
+            if (selectedAnswer === round.answers[round.correct]) { //В правой части - ответ из словаря с индексом, как в переменной "correct"
+                count++; //Переходим к следующему словарику вопросов
+                mQuestion.classList.remove("show"); //У объекта вопроса на странице забираем класс 
+                mAnswer.forEach(answer => {
+                    answer.classList.remove("show"); //У объекта ответа (у каждого) забираем класс
+                });
+                mErrorMessage.classList.remove("show"); //Если отображалось ошибка, то у неё тоже отбираем класс
+                if (count === mainVictorinaQuestions.length) { //Если вопросы в словаре кончились 
+                        mQuestion.addEventListener("transitionend", () => {
+                        mQuestion.classList.add("delete"); //Удаляем элемент со страницы, чтобы больше не занимал место
+                        mErrorMessage.classList.add("delete"); //Удаляем элемент со страницы, чтобы больше не занимал место
+                        mAnswer.forEach(answer => {
+                            answer.classList.add("delete"); //Удаляем элемент со страницы, чтобы больше не занимал место
+                        });
+                        erfolg_();
+                        }, { once: true }
+                    );
+                } else { //Начинаем следующий круг - показываем новый вопрос
+                    mQuestion.addEventListener("transitionend", () => {
+                            showQuestion();
+                        }, { once: true }
+                    );
+                };
+            } else { //Если выбран неверный ответ
+                mErrorMessage.classList.add("show"); //Отображаем объект ошибки на сайте
+            }
+        });
     });
-});
+}
 
-tryAgain.addEventListener("click", () => {
-    errorMessage.classList.remove("show");
-});
+function erfolg_() {
+    const erfolg = document.getElementById("erfolg")
+    const music = document.getElementById("music");
+    erfolg.classList.add("show");
+    music.play();
+}
+
+//Основной путь сайта
+start_()
