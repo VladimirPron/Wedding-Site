@@ -5,7 +5,7 @@
 body {
     margin: 0;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
+    font-family: "Comic Sans MS", sans-serif;
     background: #eaf5ff;
     display: flex;
     justify-content: center;
@@ -13,6 +13,7 @@ body {
 }
 .main {
     position: relative;
+    z-index: 1;
     width: 100%;
     max-width: 900px;
     padding: 30px;
@@ -21,8 +22,8 @@ body {
 }
 #mQuestion{
     width: 600px;
+    max-width: calc(100% - 30px);
     margin: 0 auto;
-
     opacity: 0;
     transform: translateX(50px);
     pointer-events: none;
@@ -42,13 +43,14 @@ body {
 }
 .mAnswer {
     width: 290px;
+    max-width: calc(100% - 30px);
     margin: 10px 5px;
-
     padding: 18px;
     border: none;
     border-radius: 15px;
     background: #d8edff;
     font-size: 18px;
+    font-family: "Comic Sans MS", sans-serif;
     pointer-events: none;
     transition:
         transform 0.5s ease,
@@ -71,6 +73,7 @@ body {
 }
 #mErrorMessage {
     width: 600px;
+    max-width: calc(100% - 30px);
     margin: 20px auto 0;
     padding: 25px;
     background: #fff;
@@ -97,6 +100,7 @@ body {
 
 #erfolg {
     width: 600px;
+    max-width: calc(100% - 30px);
     margin: 20px auto 0;
     padding: 25px;
     border: none;
@@ -113,4 +117,74 @@ body {
 #erfolg.show {
     opacity: 1;
     transform: translateX(0);
+}
+
+.image {
+    position: fixed;
+    z-index: 0;
+    opacity: 0;
+}
+#image12 {
+    bottom: 100px;
+    left: -200px;
+    width: 250px;
+    transition:
+        opacity 1s ease,
+        transform 5s ease;
+}
+#image12.show {
+    opacity: 1;
+    transform: translateX(400px);
+}
+#image13 {
+    top: 20px;
+    right: -200px;
+    width: 200px;
+    transition:
+        opacity 1s ease,
+        transform 10s ease;
+}
+#image13.show {
+    opacity: 1;
+    transform: translateX(-400px) scale(1.1);
+}
+#image14 {
+    top: 200px;
+    left: -50px;
+    width: 150px;
+    transition:
+        opacity 1s ease,
+        transform 25s ease;
+}
+#image14.show {
+    opacity: 1;
+    transform:
+        translateX(700px) 
+        translateY(100px);
+}
+
+#startButton {
+    padding: 15px 40px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive;
+    border: none;
+    border-radius: 12px;
+    background: #4a90e2;
+    color: white;
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.3s ease;
+}
+#startButton:hover {
+    transform: scale(1.05);
+}
+#startButton.delete{
+    opacity: 0;
+    display: none;
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
 }

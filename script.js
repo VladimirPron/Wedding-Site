@@ -1,24 +1,50 @@
 //Список вопросов, которые передаются на страницу
 const mainVictorinaQuestions = [
     {
-        question: "Где мы впервые встретились?",
+        question: "For him: What is the opposite of right?",
         answers: [
-            "A1",
-            "B1",
+            "left",
+            "wrong",
+        ],
+        correct: 0
+    },
+    {
+        question: "For her: Нажми слева",
+        answers: [
+            "Лево",
+            "Право",
+        ],
+        correct: 0
+    },
+    {
+        question: "For him: Нажми справа",
+        answers: [
+            "Право",
+            "Лево",
+        ],
+        correct: 0
+    },
+    {
+        question: "For her: Нажми справа",
+        answers: [
+            "Лево",
+            "Право",
         ],
         correct: 1
     },
     {
-        question: "2",
+        question: "For him: Нажми слева",
         answers: [
-            "A2",
-            "B2",
+            "Лево",
+            "Право",
         ],
         correct: 0
     },
 ]
 
 let count = 0; //Счетчик для прохода по вопросам
+
+const startButton = document.getElementById("startButton");
 
 //Элементы со страницы. По факту число присвоение элементам страницы имен, для работы на этой странице
 //Айди объекта указано в скобках
@@ -40,6 +66,7 @@ function showQuestion() {
 }
 
 function start_() {
+    startButton.classList.add("delete")
     showQuestion() //Передаем на страницу сайта первый вопрос и 2 ответа
     mAnswer.forEach(answer => {
         answer.addEventListener("click", () => { //Ждем клика по любому из ответов
@@ -78,9 +105,16 @@ function start_() {
 function erfolg_() {
     const erfolg = document.getElementById("erfolg")
     const music = document.getElementById("music");
+    const images = document.querySelectorAll(".image");
+    const bigImage = document.getElementById("image10");
     erfolg.classList.add("show");
     music.play();
+    images.forEach(img => {
+        img.classList.add("show"); //У объекта ответа (у каждого) забираем класс
+    });
+    bigImage.classList.add("show")
 }
 
 //Основной путь сайта
-start_()
+document.getElementById("startButton").addEventListener("click", start_);
+
