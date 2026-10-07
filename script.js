@@ -6,7 +6,11 @@ const mainVictorinaQuestions = [
             "left",
             "wrong",
         ],
-        correct: 0
+        correct: 0,
+        image: [
+            "images/Flags/AC.svg",
+            "images/Flags/AD.svg"
+        ],
     },
     {
         question: "For her: Нажми слева",
@@ -14,7 +18,11 @@ const mainVictorinaQuestions = [
             "Лево",
             "Право",
         ],
-        correct: 0
+        correct: 0,
+        image: [
+            "images/Flags/DE.svg",
+            "images/Flags/RU.svg"
+        ],
     },
 ]
 
@@ -26,14 +34,18 @@ const startButton = document.getElementById("startButton");
 //Айди объекта указано в скобках
 const mQuestion = document.getElementById("mQuestion"); //Вопрос один
 const mAnswer = document.querySelectorAll(".mAnswer"); //Список ответов
+const mText = document.querySelectorAll(".mText");
+const mImage = document.querySelectorAll(".mImage");
 const mErrorMessage = document.getElementById("mErrorMessage"); //Весь объект целиком
 
 //Передаем на страницу текст вопроса и текст двух ответов
 function showQuestion() {
     const round = mainVictorinaQuestions[count]; //тут переменной присваивается словарь из списка
     mQuestion.textContent = round.question;
-    mAnswer[0].textContent = round.answers[0];
-    mAnswer[1].textContent = round.answers[1];
+    mText[0].textContent = round.answers[0];
+    mText[1].textContent = round.answers[1];
+    mImage[0].src = round.image[0];
+    mImage[1].src = round.image[1];
     //тут мы задали списку вопросов соответсвующие значения
     mQuestion.classList.add("show"); //отображаем вопрос пользователю
     mAnswer.forEach(answer => {
@@ -46,7 +58,7 @@ function start_() {
     showQuestion() //Передаем на страницу сайта первый вопрос и 2 ответа
     mAnswer.forEach(answer => {
         answer.addEventListener("click", () => { //Ждем клика по любому из ответов
-            const selectedAnswer = answer.textContent; //Создаем новую переменную - это будет вариант, который выбрал пользователь
+            const selectedAnswer = answer.querySelector(".mText").textContent; //Создаем новую переменную - это будет вариант, который выбрал пользователь
             const round = mainVictorinaQuestions[count]; //Создаем переменную в которую передаем текущий словарик раунда
             if (selectedAnswer === round.answers[round.correct]) { //В правой части - ответ из словаря с индексом, как в переменной "correct"
                 count++; //Переходим к следующему словарику вопросов
