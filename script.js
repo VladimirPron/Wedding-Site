@@ -1,6 +1,7 @@
 //Список вопросов, которые передаются на страницу
 const mainVictorinaQuestions = [
     {
+        id: 1,
         question: "For him: What is the opposite of right?",
         answers: [
             "left",
@@ -13,6 +14,7 @@ const mainVictorinaQuestions = [
         ],
     },
     {
+        id: 2,
         question: "For her: Нажми слева",
         answers: [
             "Лево",
@@ -22,6 +24,45 @@ const mainVictorinaQuestions = [
         image: [
             "images/Flags/DE.svg",
             "images/Flags/RU.svg"
+        ],
+    },
+    {
+        id: 3,
+        question: "Think carefully and choose the correct answer",
+        answers: [
+            "Hoyerswerda",
+            "Düsseldorf",
+        ],
+        correct: 0,
+        image: [
+            "images/1-1.jpg",
+            "images/1-2.jpg"
+        ],
+    },
+    {
+        id: 4,
+        question: "What is the best gift?",
+        answers: [
+            "Given at the right time",
+            "Given too late",
+        ],
+        correct: 0,
+        image: [
+            "images/3-1.png",
+            "images/3-2.png"
+        ],
+    },
+    {
+        id: 5,
+        question: "Where did Mariana spend several years of her life?",
+        answers: [
+            "Island",
+            "Another island",
+        ],
+        correct: 1,
+        image: [
+            "images/2-1.png",
+            "images/2-2.png"
         ],
     },
 ]
@@ -44,6 +85,8 @@ function showQuestion() {
     mQuestion.textContent = round.question;
     mText[0].textContent = round.answers[0];
     mText[1].textContent = round.answers[1];
+    mImage[0].src = "";
+    mImage[1].src = "";
     mImage[0].src = round.image[0];
     mImage[1].src = round.image[1];
     //тут мы задали списку вопросов соответсвующие значения
@@ -55,7 +98,7 @@ function showQuestion() {
 
 function start_() {
     startButton.classList.add("delete")
-    showQuestion() //Передаем на страницу сайта первый вопрос и 2 ответа
+    showQuestion() //Передаем на страницу сайта первый вопрос и 2 ответа с картинками или без
     mAnswer.forEach(answer => {
         answer.addEventListener("click", () => { //Ждем клика по любому из ответов
             const selectedAnswer = answer.querySelector(".mText").textContent; //Создаем новую переменную - это будет вариант, который выбрал пользователь
@@ -94,7 +137,7 @@ function erfolg_() {
     const erfolg = document.getElementById("erfolg")
     const music = document.getElementById("music");
     const images = document.querySelectorAll(".image");
-    const bigImage = document.getElementById("image10");
+    const bigImage = document.getElementById("bigImage");
     erfolg.classList.add("show");
     music.play();
     images.forEach(img => {
