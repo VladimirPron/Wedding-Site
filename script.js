@@ -46,7 +46,7 @@ const mainVictorinaQuestions = [
             "Given at the right time",
             "Given too late",
         ],
-        correct: 0,
+        correct: 1,
         image: [
             "images/3-1.png",
             "images/3-2.png"
@@ -63,6 +63,19 @@ const mainVictorinaQuestions = [
         image: [
             "images/2-1.png",
             "images/2-2.png"
+        ],
+    },
+    {
+        id: 6,
+        question: "Choose the right croissant!",
+        answers: [
+            "First",
+            "Second",
+        ],
+        correct: 0,
+        image: [
+            "images/4-1.jpg",
+            "images/4-2.jpg"
         ],
     },
 ]
@@ -105,28 +118,35 @@ function start_() {
             const round = mainVictorinaQuestions[count]; //Создаем переменную в которую передаем текущий словарик раунда
             if (selectedAnswer === round.answers[round.correct]) { //В правой части - ответ из словаря с индексом, как в переменной "correct"
                 count++; //Переходим к следующему словарику вопросов
-                mQuestion.classList.remove("show"); //У объекта вопроса на странице забираем класс 
-                mAnswer.forEach(answer => {
-                    answer.classList.remove("show"); //У объекта ответа (у каждого) забираем класс
-                });
-                mErrorMessage.classList.remove("show"); //Если отображалось ошибка, то у неё тоже отбираем класс
-                if (count === mainVictorinaQuestions.length) { //Если вопросы в словаре кончились 
+                answer.classList.add("right")
+                setTimeout(() => {
+                    mQuestion.classList.remove("show"); //У объекта вопроса на странице забираем класс 
+                    mAnswer.forEach(answer => {
+                        answer.classList.remove("show"); //У объекта ответа (у каждого) забираем класс
+                        answer.classList.remove("right");
+                        answer.classList.remove("false");
+                    });
+                    mErrorMessage.classList.remove("show"); //Если отображалось ошибка, то у неё тоже отбираем класс
+                    if (count === mainVictorinaQuestions.length) { //Если вопросы в словаре кончились 
+                            mQuestion.addEventListener("transitionend", () => {
+                            mQuestion.classList.add("delete"); //Удаляем элемент со страницы, чтобы больше не занимал место
+                            mErrorMessage.classList.add("delete"); //Удаляем элемент со страницы, чтобы больше не занимал место
+                            mAnswer.forEach(answer => {
+                                answer.classList.add("delete"); //Удаляем элемент со страницы, чтобы больше не занимал место
+                            });
+                            erfolg_();
+                            }, { once: true }
+                        );
+                    } else { //Начинаем следующий круг - показываем новый вопрос
                         mQuestion.addEventListener("transitionend", () => {
-                        mQuestion.classList.add("delete"); //Удаляем элемент со страницы, чтобы больше не занимал место
-                        mErrorMessage.classList.add("delete"); //Удаляем элемент со страницы, чтобы больше не занимал место
-                        mAnswer.forEach(answer => {
-                            answer.classList.add("delete"); //Удаляем элемент со страницы, чтобы больше не занимал место
-                        });
-                        erfolg_();
-                        }, { once: true }
-                    );
-                } else { //Начинаем следующий круг - показываем новый вопрос
-                    mQuestion.addEventListener("transitionend", () => {
-                            showQuestion();
-                        }, { once: true }
-                    );
-                };
+                                showQuestion();
+                            }, { once: true }
+                        );
+                    };
+                }, 1000);
+                
             } else { //Если выбран неверный ответ
+                answer.classList.add("false")
                 mErrorMessage.classList.add("show"); //Отображаем объект ошибки на сайте
             }
         });
