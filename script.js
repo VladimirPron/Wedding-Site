@@ -2,32 +2,6 @@
 const mainVictorinaQuestions = [
     {
         id: 1,
-        question: "For him: What is the opposite of right?",
-        answers: [
-            "left",
-            "wrong",
-        ],
-        correct: 0,
-        image: [
-            "images/Flags/AC.svg",
-            "images/Flags/AD.svg"
-        ],
-    },
-    {
-        id: 2,
-        question: "For her: Нажми слева",
-        answers: [
-            "Лево",
-            "Право",
-        ],
-        correct: 0,
-        image: [
-            "images/Flags/DE.svg",
-            "images/Flags/RU.svg"
-        ],
-    },
-    {
-        id: 3,
         question: "Think carefully and choose the correct answer",
         answers: [
             "Hoyerswerda",
@@ -38,22 +12,24 @@ const mainVictorinaQuestions = [
             "images/1-1.jpg",
             "images/1-2.jpg"
         ],
+        wrong_answer: "Wrong answer, but we admire your confidence!",
     },
     {
-        id: 4,
+        id: 2,
         question: "What is the best gift?",
         answers: [
-            "Given at the right time",
-            "Given too late",
+            "One given on time",
+            "A belated one",
         ],
         correct: 1,
         image: [
-            "images/3-1.png",
-            "images/3-2.png"
+            "images/2-1.png",
+            "images/2-2.png"
         ],
+        wrong_answer: "Are you sure?",
     },
     {
-        id: 5,
+        id: 3,
         question: "Where did Mariana spend several years of her life?",
         answers: [
             "Island",
@@ -61,12 +37,27 @@ const mainVictorinaQuestions = [
         ],
         correct: 1,
         image: [
-            "images/2-1.png",
-            "images/2-2.png"
+            "images/3-1.jpeg",
+            "images/3-2.png"
         ],
+        wrong_answer: "Have you two just met?!",
+    },
+{
+        id: 4,
+        question: "Which house did Tusek grow up in?",
+        answers: [
+            "This one",
+            "Another one",
+        ],
+        correct: 1,
+        image: [
+            "images/4-1.jpg",
+            "images/4-2.jpg"
+        ],
+        wrong_answer: "Have you two just met?!",
     },
     {
-        id: 6,
+        id: 5,
         question: "Choose the right croissant!",
         answers: [
             "First",
@@ -74,9 +65,66 @@ const mainVictorinaQuestions = [
         ],
         correct: 0,
         image: [
-            "images/4-1.jpg",
-            "images/4-2.jpg"
+            "images/5-1.jpg",
+            "images/5-2.jpg"
         ],
+        wrong_answer: "Oh, come on!",
+    },
+    {
+        id: 6,
+        question: "Trust your instincts!",
+        answers: [
+            "This Masterpiece",
+            "Beautiful work",
+        ],
+        correct: 1,
+        image: [
+            "images/6-1.jpg",
+            "images/6-2.jpg"
+        ],
+        wrong_answer: "Room for improvement!",
+    },
+    {
+        id: 7,
+        question: "Choose the right fish!",
+        answers: [
+            "Lord Herring",
+            "Lady Sprat",
+        ],
+        correct: 0,
+        image: [
+            "images/7-1.png",
+            "images/7-2.png"
+        ],
+        wrong_answer: "That's not what we expected!",
+    },
+    {
+        id: 8,
+        question: "Choose the right dog",
+        answers: [
+            "Chocolate Thunder",
+            "Silver Bullet",
+        ],
+        correct: 0,
+        image: [
+            "images/8-1.jpg",
+            "images/8-2.jpg"
+        ],
+        wrong_answer: "Wrong dog!",
+    },
+    {
+        id: 9,
+        question: "Choose the real Brazilian",
+        answers: [
+            "Wandering Queen",
+            "Captain Forgot His Bag",
+        ],
+        correct: 0,
+        image: [
+            "images/9-1.jpg",
+            "images/9-2.jpg"
+        ],
+        wrong_answer: "That's a fake one!",
     },
 ]
 
@@ -91,6 +139,9 @@ const mAnswer = document.querySelectorAll(".mAnswer"); //Список ответ
 const mText = document.querySelectorAll(".mText");
 const mImage = document.querySelectorAll(".mImage");
 const mErrorMessage = document.getElementById("mErrorMessage"); //Весь объект целиком
+const mRightAnswer = document.getElementById("mRightAnswer");
+const music_start = document.getElementById("music_start");
+const music_finish = document.getElementById("music_finish");
 
 //Передаем на страницу текст вопроса и текст двух ответов
 function showQuestion() {
@@ -110,6 +161,8 @@ function showQuestion() {
 }
 
 function start_() {
+    document.body.classList.add("base");
+    music_start.play();
     startButton.classList.add("delete")
     showQuestion() //Передаем на страницу сайта первый вопрос и 2 ответа с картинками или без
     mAnswer.forEach(answer => {
@@ -119,6 +172,7 @@ function start_() {
             if (selectedAnswer === round.answers[round.correct]) { //В правой части - ответ из словаря с индексом, как в переменной "correct"
                 count++; //Переходим к следующему словарику вопросов
                 answer.classList.add("right")
+                mRightAnswer.classList.add("show")
                 setTimeout(() => {
                     mQuestion.classList.remove("show"); //У объекта вопроса на странице забираем класс 
                     mAnswer.forEach(answer => {
@@ -126,11 +180,13 @@ function start_() {
                         answer.classList.remove("right");
                         answer.classList.remove("false");
                     });
-                    mErrorMessage.classList.remove("show"); //Если отображалось ошибка, то у неё тоже отбираем класс
+                    mErrorMessage.classList.remove("show");
+                    mRightAnswer.classList.remove("show") //Если отображалось ошибка, то у неё тоже отбираем класс
                     if (count === mainVictorinaQuestions.length) { //Если вопросы в словаре кончились 
                             mQuestion.addEventListener("transitionend", () => {
                             mQuestion.classList.add("delete"); //Удаляем элемент со страницы, чтобы больше не занимал место
                             mErrorMessage.classList.add("delete"); //Удаляем элемент со страницы, чтобы больше не занимал место
+                            mRightAnswer.classList.add("delete")
                             mAnswer.forEach(answer => {
                                 answer.classList.add("delete"); //Удаляем элемент со страницы, чтобы больше не занимал место
                             });
@@ -146,6 +202,7 @@ function start_() {
                 }, 1000); //Задержка зеленой подсветки при правильном ответе
                 
             } else { //Если выбран неверный ответ
+                mErrorMessage.textContent = round.wrong_answer;
                 answer.classList.add("false")
                 mErrorMessage.classList.add("show"); //Отображаем объект ошибки на сайте
             }
@@ -154,12 +211,13 @@ function start_() {
 }
 
 function erfolg_() {
+    document.body.classList.add("final");
     const erfolg = document.getElementById("erfolg")
-    const music = document.getElementById("music");
     const images = document.querySelectorAll(".image");
     const bigImage = document.getElementById("bigImage");
     erfolg.classList.add("show");
-    music.play();
+    music_start.pause()
+    music_finish.play();
     images.forEach(img => {
         img.classList.add("show"); //У объекта ответа (у каждого) забираем класс
     });
@@ -168,4 +226,3 @@ function erfolg_() {
 
 //Основной путь сайта
 document.getElementById("startButton").addEventListener("click", start_);
-

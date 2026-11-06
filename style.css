@@ -14,11 +14,17 @@ body {
     height: 100%;
     margin: 0;
     overflow: hidden;
-    background-image: url("images/0.png");
+    background-image: url("images/0-1.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+body.base {
+    background-image: url("images/0-2.jpg");
+}
+body.final {
+    background-image: url("images/0-3.png");
 }
 .main {
     position: relative;
@@ -56,11 +62,11 @@ body {
     align-items: center; 
 }
 .mAnswer {
-    width: 290px;
+    width: 450px;
     max-width: calc(100% - 30px);
     margin: 10px 5px;
     padding: 18px;
-    border: none;
+    border: 8px solid transparent;
     border-radius: 15px;
     background: #d8edff;
     font-size: 18px;
@@ -95,14 +101,15 @@ body {
 }
 .mImage {
     margin-top: 10px;
-    width: 150px;
+    width: 300px;
     border-radius: 15px;
     object-position: center;
 }
-#mErrorMessage {
+#mRightAnswer {
     width: 600px;
     max-width: calc(100% - 30px);
     margin: 20px auto 0;
+    min-height: 90px;
     padding: 25px;
     background: #fff;
     border-radius: 20px;
@@ -113,14 +120,37 @@ body {
     transition:
         opacity 0.4s ease,
         transform 0.4s ease;
+    border: 8px solid #ace7b8;
+}
+#mRightAnswer.show {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+#mRightAnswer.delete {
+    display: none;
+}
+#mErrorMessage {
+    width: 600px;
+    max-width: calc(100% - 30px);
+    margin: 20px auto 0;
+    min-height: 90px;
+    padding: 25px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    transform: translateX(30px);
+    pointer-events: none;
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+    border: 8px solid #e57455;
 }
 #mErrorMessage.show {
     opacity: 1;
     transform: translateX(0);
     pointer-events: auto;
-}
-#mErrorMessage h2 {
-    margin-top: 0;
 }
 #mErrorMessage.delete {
     display: none;
@@ -129,7 +159,7 @@ body {
 #erfolg {
     width: 600px;
     max-width: calc(100% - 30px);
-    margin: 20px auto 0;
+    margin: auto;
     padding: 25px;
     border: none;
     border-radius: 15px;
@@ -172,11 +202,11 @@ body {
     width: 200px;
     transition:
         opacity 1s ease,
-        transform 10s ease;
+        transform 20s ease;
 }
 #image13.show {
     opacity: 1;
-    transform: translateX(-250px) scale(1.1);
+    transform: translateX(-850px) scale(1.1);
 }
 #image14 {
     top: 200px;
@@ -199,13 +229,13 @@ body {
     font-weight: bold;
     border: none;
     border-radius: 12px;
-    background: #f3d96f;
+    background: #a9c968;
     color: white;
     cursor: pointer;
 
     transition:
         transform 0.2s ease,
-        opacity 0.3s ease;
+        opacity 0.2s ease;
 }
 #startButton:hover {
     transform: scale(1.05);

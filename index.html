@@ -10,9 +10,19 @@
     <body>
         <main class="main">
             <button id="startButton">
-                We’ve prepared a little quiz just for you! 💙<br>
-                The questions will alternate between ones for him and for her.<br>
-                Whenever you’re ready, just click me! ✨</button>
+                <h1>Hello, newlyweds!</h1>
+                They say good things come to those who wait… and you’ve certainly waited long enough!<br>
+                The moment has finally arrived! To claim your prize, you’ll need to complete this little quiz.<br>
+                <br>
+                (If you notice a few extra fingers in the pictures, please don’t judge us too harshly! We did our best!)<br>
+                <br>
+                Trust your gut and follow your intuition!<br>
+                <br>
+                Whenever you’re ready, just click me! ✨
+            </button>
+            <audio id="music_start" autoplay>
+                <source src="sounds/3.mp3" type="audio/mpeg">
+            </audio>
             <h1 id="mQuestion"></h1>
             <div class="answers">
                 <button id="mAnswer1" class="mAnswer">
@@ -24,10 +34,8 @@
                     <img id="mImage2" class="mImage">
                 </button>
             </div>
-            <div id="mErrorMessage">
-                <h2>No way! 😏</h2>
-                <p>Let's try again</p>
-            </div>
+            <div id="mErrorMessage"> </div>
+            <div id="mRightAnswer">✅ Very beautiful</div>
             <div id="erfolg">
                 <div id="gText_1">
                     We would like to give you a gift certificate<br>
@@ -45,13 +53,13 @@
                     Most importantly, we hope this journey will bring you unforgettable experiences, beautiful places, and memories that you will cherish for many years to come.<br>
                     With love and our very best wishes! ❤️
                 </div>
-                <audio id="music" loop>
+                <audio id="music_finish" loop>
                     <source src="sounds/2.mp3" type="audio/mpeg">
                 </audio>
             </div>
-            <img src="images/12.png" id="image12" class="image" alt="пусто">
+            <!-- <img src="images/12.png" id="image12" class="image" alt="пусто"> -->
             <img src="images/13.png" id="image13" class="image" alt="пусто">
-            <img src="images/14.png" id="image14" class="image" alt="пусто">
+            <!-- <img src="images/14.png" id="image14" class="image" alt="пусто"> -->
         </main>
         <script src="script.js"></script>
     </body>
