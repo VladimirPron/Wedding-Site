@@ -5,7 +5,7 @@ const mainVictorinaQuestions = [
         question: "Think carefully and choose the correct answer",
         answers: [
             "Hoyerswerda",
-            "Düsseldorf",
+            "Warsaw",
         ],
         correct: 0,
         image: [
@@ -30,7 +30,7 @@ const mainVictorinaQuestions = [
     },
     {
         id: 3,
-        question: "Where did Mariana spend several years of her life?",
+        question: "💙 Where did Mariana spend several years of her life?",
         answers: [
             "Island",
             "Another island",
@@ -44,7 +44,7 @@ const mainVictorinaQuestions = [
     },
 {
         id: 4,
-        question: "Which house did Tusek grow up in?",
+        question: "❤️ Which house did Tusek grow up in?",
         answers: [
             "This one",
             "Another one",
@@ -54,7 +54,7 @@ const mainVictorinaQuestions = [
             "images/4-1.jpg",
             "images/4-2.jpg"
         ],
-        wrong_answer: "Have you two just met?!",
+        wrong_answer: "Try again!",
     },
     {
         id: 5,
@@ -72,9 +72,37 @@ const mainVictorinaQuestions = [
     },
     {
         id: 6,
-        question: "Trust your instincts!",
+        question: "❤️ What sport did Pasha do as a child?",
         answers: [
-            "This Masterpiece",
+            "Karate",
+            "Powerlifting",
+        ],
+        correct: 0,
+        image: [
+            "images/10-1.jpg",
+            "images/10-2.jpg"
+        ],
+        wrong_answer: "No way!",
+    },
+    {
+        id: 7,
+        question: "💙 What was Mariana’s first pet?",
+        answers: [
+            "Frog",
+            "Chicken",
+        ],
+        correct: 1,
+        image: [
+            "images/13-1.jpg",
+            "images/13-2.jpg"
+        ],
+        wrong_answer: "You have more in common than you think!",
+    },
+    {
+        id: 8,
+        question: "Who is clearly talented?",
+        answers: [
+            "Masterpiece",
             "Beautiful work",
         ],
         correct: 1,
@@ -82,11 +110,11 @@ const mainVictorinaQuestions = [
             "images/6-1.jpg",
             "images/6-2.jpg"
         ],
-        wrong_answer: "Room for improvement!",
+        wrong_answer: "A talent in progress",
     },
     {
-        id: 7,
-        question: "Choose the right fish!",
+        id: 9,
+        question: "Trust your instincts!",
         answers: [
             "Lord Herring",
             "Lady Sprat",
@@ -99,22 +127,78 @@ const mainVictorinaQuestions = [
         wrong_answer: "That's not what we expected!",
     },
     {
-        id: 8,
-        question: "Choose the right dog",
+        id: 10,
+        question: "💙 Which situation made Mariana cry deeply?",
         answers: [
-            "Chocolate Thunder",
-            "Silver Bullet",
+            "Watching The Lion King",
+            "Watching her parents’ wedding video",
+        ],
+        correct: 1,
+        image: [
+            "images/11-1.jpg",
+            "images/11-2.jpg"
+        ],
+        wrong_answer: "Wrong! Now guess why!",
+    },
+    {
+        id: 11,
+        question: "❤️ How does Pasha like to spend his time in the village?",
+        answers: [
+            "Water the garden",
+            "Lying on a bench",
+        ],
+        correct: 1,
+        image: [
+            "images/15-1.jpg",
+            "images/15-2.jpg"
+        ],
+        wrong_answer: "Nope, not the flowers!",
+    },
+    {
+        id: 12,
+        question: "An ordinary person’s cookies...",
+        answers: [
+            "This one",
+            "Another one",
         ],
         correct: 0,
         image: [
             "images/8-1.jpg",
             "images/8-2.jpg"
         ],
-        wrong_answer: "Wrong dog!",
+        wrong_answer: "This is Mariana’s Cookie!!",
     },
     {
-        id: 9,
-        question: "Choose the real Brazilian",
+        id: 13,
+        question: "💙 How old was Mariana when she got her driver’s license?",
+        answers: [
+            "16",
+            "15",
+        ],
+        correct: 1,
+        image: [
+            "images/12-1.jpg",
+            "images/12-2.jpg"
+        ],
+        wrong_answer: "Wrong! And she was the only person in her group of 20 who passed the driving test!",
+    },
+    {
+        id: 14,
+        question: "❤️ What will Pasha make for dinner?",
+        answers: [
+            "Chicken with rice",
+            "Pasta with trout",
+        ],
+        correct: 0,
+        image: [
+            "images/16-1.jpg",
+            "images/16-2.jpg"
+        ],
+        wrong_answer: "Oh, come on!",
+    },
+    {
+        id: 15,
+        question: "Choose the real Brazilian...",
         answers: [
             "Wandering Queen",
             "Captain Forgot His Bag",
@@ -126,11 +210,40 @@ const mainVictorinaQuestions = [
         ],
         wrong_answer: "That's a fake one!",
     },
+    {
+        id: 16,
+        question: "💙 What is the correct way for Mariana to hold the scissors?",
+        answers: [
+            "A",
+            "B",
+        ],
+        correct: 1,
+        image: [
+            "images/14-1.jpg",
+            "images/14-2.jpg"
+        ],
+        wrong_answer: "There’s more to see around you than you think!",
+    },
+    {
+        id: 17,
+        question: "❤️ What does “climbing up” mean in Pasha’s vocabulary?",
+        answers: [
+            "This way",
+            "Or this way",
+        ],
+        correct: 0,
+        image: [
+            "images/17-1.jpg",
+            "images/17-2.jpg"
+        ],
+        wrong_answer: "Sort of, but not quite",
+    },
 ]
 
 let count = 0; //Счетчик для прохода по вопросам
 
 const startButton = document.getElementById("startButton");
+const startText = document.getElementById("startText")
 
 //Элементы со страницы. По факту число присвоение элементам страницы имен, для работы на этой странице
 //Айди объекта указано в скобках
@@ -149,8 +262,8 @@ function showQuestion() {
     mQuestion.textContent = round.question;
     mText[0].textContent = round.answers[0];
     mText[1].textContent = round.answers[1];
-    mImage[0].src = "";
-    mImage[1].src = "";
+    // mImage[0].src = "";
+    // mImage[1].src = "";
     mImage[0].src = round.image[0];
     mImage[1].src = round.image[1];
     //тут мы задали списку вопросов соответсвующие значения
@@ -164,6 +277,7 @@ function start_() {
     document.body.classList.add("base");
     music_start.play();
     startButton.classList.add("delete")
+    startText.classList.add("delete")
     showQuestion() //Передаем на страницу сайта первый вопрос и 2 ответа с картинками или без
     mAnswer.forEach(answer => {
         answer.addEventListener("click", () => { //Ждем клика по любому из ответов

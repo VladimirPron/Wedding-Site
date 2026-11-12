@@ -160,7 +160,7 @@ body.final {
     width: 600px;
     max-width: calc(100% - 30px);
     margin: auto;
-    padding: 25px;
+    padding: 20px;
     border: none;
     border-radius: 15px;
     background: #d8edff;
@@ -174,7 +174,7 @@ body.final {
     display: none;
 }
 #erfolg.show {
-    opacity: 1;
+    opacity: 0.75;
     transform: translateX(0);
     display: block;
 }
@@ -224,12 +224,13 @@ body.final {
 }
 
 #startButton {
+    margin-top: 50px;
     padding: 15px 40px;
     font-size: 20px;
     font-weight: bold;
     border: none;
     border-radius: 12px;
-    background: #a9c968;
+    background: #8c9b6f;
     color: white;
     cursor: pointer;
 
@@ -241,6 +242,27 @@ body.final {
     transform: scale(1.05);
 }
 #startButton.delete{
+    opacity: 0;
+    display: none;
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+}
+#startText {
+    padding: 15px 40px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    background: #8c9b6f;
+    color: white;
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+#startText.delete {
     opacity: 0;
     display: none;
     transition:
