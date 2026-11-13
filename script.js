@@ -175,7 +175,7 @@ const mainVictorinaQuestions = [
             "16",
             "15",
         ],
-        correct: 1,
+        correct: 0,
         image: [
             "images/12-1.jpg",
             "images/12-2.jpg"
